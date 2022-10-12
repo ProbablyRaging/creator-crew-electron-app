@@ -1,17 +1,20 @@
 const { app, BrowserWindow } = require('electron');
 const path = require('path');
 const ipc = require("electron").ipcMain;
+const ejse = require('ejs-electron');
+
+require('electron-reloader')(module);
 
 if (require('electron-squirrel-startup')) {
     app.quit();
 }
 
-require('electron-reloader')(module);
+ejse.data('user', 'jim')
 
 const createWindow = () => {
     mainWindow = new BrowserWindow({
-        width: 800,
-        height: 600,
+        width: 1200,
+        height: 700,
         frame: false,
         backgroundColor: '#fff',
         webPreferences: {
@@ -20,7 +23,7 @@ const createWindow = () => {
             contextIsolation: false,
         },
     });
-    mainWindow.loadFile(path.join(__dirname, 'src/views/index.html'));
+    mainWindow.loadFile(path.join(__dirname, 'src/views/index.ejs'));
 };
 
 app.disableHardwareAcceleration();

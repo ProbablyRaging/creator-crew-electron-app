@@ -1,6 +1,11 @@
 const electron = require("electron");
 const ipc = electron.ipcRenderer;
 
+document.addEventListener('DOMContentLoaded', function() {
+    const test = document.getElementById('test')
+    test.innerHTML = 'Boop'
+})
+
 // Minimize
 const minimize = document.getElementById("min-button");
 minimize.addEventListener("click", function () {
